@@ -4,9 +4,9 @@ let editingVocabId = null
 function saveWord(event) {
     event.preventDefault()
 
-    const word = document.getElementById('vocabWord').value.trim()
-    const translations = document.getElementById('vocabTranslation').value.trim().split('\s*,\s*')
-    const language = document.getElementById('vocabLanguage').value.trim()
+    const word = document.getElementById('vocabWord').value.trim().toLowerCase()
+    const translations = document.getElementById('vocabTranslation').value.trim().toLowerCase().split(/\s*,\s*/)
+    const language = document.getElementById('vocabLanguage').value.trim().toUpperCase()
 
     if(editingVocabId) {
         const vocabIndex = vocabList.findIndex(vocab => vocab.id == editingVocabId)
@@ -50,6 +50,15 @@ function deleteWord(vocabId) {
     renderVocab()
 }
 
+function matchesSearch(vocab) {
+    const searchBar = document.getElementById('searchBar')
+    const searchValue = searchBar.value
+
+    return vocab.word.includes(searchValue) ||
+            vocab.translations.reduce((isFound, translation) => isFound || translation.includes(searchValue), false) ||
+            vocab.language.includes(searchValue)
+}
+
 function renderVocab() {
     const vocabContainer = document.getElementById("vocabContainer")
 
@@ -67,7 +76,7 @@ function renderVocab() {
 
     const isDark = localStorage.getItem('theme') == 'dark'
 
-    vocabContainer.innerHTML = vocabList.map(vocab => `
+    vocabContainer.innerHTML = vocabList.map(vocab => matchesSearch(vocab) ? `
         <div class='vocab-display'>
             <h3 class='vocab-word'>${vocab.word}</h3>
 
@@ -85,7 +94,7 @@ function renderVocab() {
                 </button>
             </div>
         </div>
-    `).join('')
+    ` : '').join('')
 }
 
 function openVocabDialog(vocabId = null) {
@@ -143,6 +152,9 @@ document.addEventListener('DOMContentLoaded', function () {
 
     const themeToggleButton = document.getElementById('themeToggleButton')
     themeToggleButton.addEventListener('click', toggleTheme)
+
+    const searchBar = document.getElementById('searchBar')
+    searchBar.addEventListener('keyup', renderVocab)
 
     const dialog = document.getElementById('vocabDialog')
     dialog.addEventListener('click', function(event) {
