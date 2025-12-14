@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vocabulary Tracker</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="app.js" defer></script>
+</head>
+<body>
+    <header>
+        <h1>Vocabulary Tracker</h1>
+        <div>
+            <button class="add-vocab-button" onClick="openVocabDialog()">+ Add Vocab</button>
+            <button id="themeToggleButton" class="theme-toggle-button">&#127769;</button>
+        </div>
+    </header>
+    <main id="vocabContainer" class="vocab-list">
+
+    </main>
+    <dialog id="vocabDialog">
+        <div class="dialog-content">
+            <div class="dialog-header">
+                <h2 class="dialog-title" id="dialogTitle">Add New Vocab</h2>
+                <button class="close-button" onClick="closeVocabDialog()">x</button>
+            </div>
+
+            <form id="vocabForm">
+                <div class="form-group">
+                    <label for="vocabWord" class="form-label">Word</label>
+                    <input type="text" id="vocabWord" class="form-input" placeholder="Enter vocab word..." required>
+                </div>
+
+                <div class="form-group">
+                    <label for="vocabTranslation" class="form-label">English</label>
+                    <input type="text" id="vocabTranslation" class="form-input" placeholder="Enter English translation..." required>
+                </div>
+
+                <div class="form-group">
+                    <label for="vocabLanguage" class="form-label">Language</label>
+                    <input type="text" id="vocabLanguage" class="form-input" placeholder="Enter language" required>
+                </div>
+
+                <div class="dialog-actions">
+                    <button type="button" class="cancel-button" onClick="closeVocabDialog()">Cancel</button>
+                    <button type="submit" class="save-button">Save Word</button>
+                </div>
+            </form>
+        </div>
+    </dialog>
+</body>
+</html>
