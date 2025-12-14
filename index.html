@@ -10,7 +10,7 @@
 <body>
     <header>
         <h1>Vocabulary Tracker</h1>
-        <input type="text" class="search-bar" id="searchBar">
+        <input type="text" class="search-bar" id="searchBar" autocomplete="off">
         <div>
             <button class="add-vocab-button" onClick="openVocabDialog()">+ Add Vocab</button>
             <button id="themeToggleButton" class="theme-toggle-button">&#127769;</button>
@@ -29,17 +29,17 @@
             <form id="vocabForm">
                 <div class="form-group">
                     <label for="vocabWord" class="form-label">Word</label>
-                    <input type="text" id="vocabWord" class="form-input" placeholder="Enter vocab word..." required>
+                    <input type="text" id="vocabWord" class="form-input" placeholder="Enter vocab word..." autocomplete="off" required>
                 </div>
 
                 <div class="form-group">
                     <label for="vocabTranslation" class="form-label">English</label>
-                    <input type="text" id="vocabTranslation" class="form-input" placeholder="Enter English translation..." required>
+                    <input type="text" id="vocabTranslation" class="form-input" placeholder="Enter English translation..." autocomplete="off" required>
                 </div>
 
                 <div class="form-group">
                     <label for="vocabLanguage" class="form-label">Language</label>
-                    <input type="text" id="vocabLanguage" class="form-input" placeholder="Enter language" required>
+                    <input type="text" id="vocabLanguage" class="form-input" placeholder="Enter language" autocomplete="off" required>
                 </div>
 
                 <div class="dialog-actions">
